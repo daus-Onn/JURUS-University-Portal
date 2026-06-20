@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNewAnnPage.classList.add('hide');
     btnNewProposal.classList.add('hide');
     
-    incomingCollabList.innerHTML = `<p class="empty-msg">Please log in to view collaboration requests.</p>`;
+    incomingCollabList.innerHTML = DOMPurify.sanitize(`<p class="empty-msg">Please log in to view collaboration requests.</p>`);
     document.getElementById('card-accepted-collab')?.classList.add('hide');
     updateHeroButtons();
     navigateTo('dashboard');
@@ -253,37 +253,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!heroActions) return;
     
     if (!currentUser) {
-      heroActions.innerHTML = `
+      heroActions.innerHTML = DOMPurify.sanitize(`
         <button id="btn-hero-explore" class="btn btn-primary">Explore Proposals</button>
         <button id="btn-hero-login" class="btn btn-secondary">Sign In to Portal</button>
-      `;
+      `);
       document.getElementById('btn-hero-explore').addEventListener('click', () => navigateTo('proposals'));
       document.getElementById('btn-hero-login').addEventListener('click', () => {
         modalAuth.classList.remove('hide');
         tabLogin.click();
       });
     } else if (currentUser.role === 'admin') {
-      heroActions.innerHTML = `
+      heroActions.innerHTML = DOMPurify.sanitize(`
         <button id="btn-hero-logs" class="btn btn-primary">Audit Security Logs</button>
         <button id="btn-hero-explore" class="btn btn-secondary">Manage Proposals</button>
-      `;
+      `);
       document.getElementById('btn-hero-logs').addEventListener('click', () => navigateTo('admin'));
       document.getElementById('btn-hero-explore').addEventListener('click', () => navigateTo('proposals'));
     } else if (currentUser.role === 'researcher') {
-      heroActions.innerHTML = `
+      heroActions.innerHTML = DOMPurify.sanitize(`
         <button id="btn-hero-upload" class="btn btn-primary">Submit Proposal</button>
         <button id="btn-hero-explore" class="btn btn-secondary">View My Proposals</button>
-      `;
+      `);
       document.getElementById('btn-hero-upload').addEventListener('click', () => {
         modalProposal.classList.remove('hide');
         spanSelectedFileName.textContent = '';
       });
       document.getElementById('btn-hero-explore').addEventListener('click', () => navigateTo('proposals'));
     } else { // collaborator
-      heroActions.innerHTML = `
+      heroActions.innerHTML = DOMPurify.sanitize(`
         <button id="btn-hero-explore" class="btn btn-primary">Explore Proposals</button>
         <button id="btn-hero-notices" class="btn btn-secondary">Read Announcements</button>
-      `;
+      `);
       document.getElementById('btn-hero-explore').addEventListener('click', () => navigateTo('proposals'));
       document.getElementById('btn-hero-notices').addEventListener('click', () => navigateTo('announcements'));
     }
@@ -386,10 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('/api/announcements');
       const data = await res.json();
-      announcementsList.innerHTML = '';
+      announcementsList.innerHTML = DOMPurify.sanitize('');
       
       if (data.announcements.length === 0) {
-        announcementsList.innerHTML = '<p class="empty-msg">No announcements published.</p>';
+        announcementsList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">No announcements published.</p>');
         return;
       }
 
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
         announcementsList.appendChild(item);
       });
     } catch (err) {
-      announcementsList.innerHTML = '<p class="empty-msg">Error loading announcements.</p>';
+      announcementsList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading announcements.</p>');
     }
   }
 
@@ -433,10 +433,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('/api/announcements');
       const data = await res.json();
-      announcementsFullList.innerHTML = '';
+      announcementsFullList.innerHTML = DOMPurify.sanitize('');
       
       if (data.announcements.length === 0) {
-        announcementsFullList.innerHTML = '<p class="empty-msg">No announcements published.</p>';
+        announcementsFullList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">No announcements published.</p>');
         return;
       }
 
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
         announcementsFullList.appendChild(item);
       });
     } catch (err) {
-      announcementsFullList.innerHTML = '<p class="empty-msg">Error loading notices.</p>';
+      announcementsFullList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading notices.</p>');
     }
   }
 
@@ -566,10 +566,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('/api/proposals');
       const data = await res.json();
-      proposalsGrid.innerHTML = '';
+      proposalsGrid.innerHTML = DOMPurify.sanitize('');
 
       if (data.proposals.length === 0) {
-        proposalsGrid.innerHTML = '<p class="empty-msg">No proposals submitted yet.</p>';
+        proposalsGrid.innerHTML = DOMPurify.sanitize('<p class="empty-msg">No proposals submitted yet.</p>');
         return;
       }
 
@@ -599,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `<a href="${prop.file_path}" target="_blank" class="proposal-attachment-link">📄 ${escapeHTML(prop.file_name)}</a>`
           : '<span class="proposal-attachment-link" style="color:var(--text-muted)">No document</span>';
 
-        card.innerHTML = `
+        card.innerHTML = DOMPurify.sanitize(`
           <div class="proposal-card-body">
             <span class="proposal-status-badge status-${prop.status}">${prop.status}</span>
             <h3 style="margin-top: 10px;">${escapeHTML(prop.title)}</h3>
@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ${actionButtons}
             </div>
           </div>
-        `;
+        `);
         proposalsGrid.appendChild(card);
       });
 
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
     } catch (err) {
-      proposalsGrid.innerHTML = '<p class="empty-msg">Error loading proposals.</p>';
+      proposalsGrid.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading proposals.</p>');
     }
   }
 
@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (!currentUser) {
       if (collabTitleElem) collabTitleElem.textContent = 'Collaboration Request Inbox';
-      incomingCollabList.innerHTML = '<p class="empty-msg">Please log in to view collaboration requests.</p>';
+      incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Please log in to view collaboration requests.</p>');
       return;
     }
     
@@ -708,15 +708,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const res = await fetch('/api/collaboration/sent');
         if (!res.ok) {
-          incomingCollabList.innerHTML = '<p class="empty-msg">Error loading sent collaboration requests.</p>';
+          incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading sent collaboration requests.</p>');
           return;
         }
         const data = await res.json();
-        incomingCollabList.innerHTML = '';
+        incomingCollabList.innerHTML = DOMPurify.sanitize('');
         
         const requests = data.requests || [];
         if (requests.length === 0) {
-          incomingCollabList.innerHTML = '<p class="empty-msg">You have not sent any collaboration requests yet. Go to the <strong>Proposals</strong> tab to send one.</p>';
+          incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">You have not sent any collaboration requests yet. Go to the <strong>Proposals</strong> tab to send one.</p>');
           return;
         }
         
@@ -728,18 +728,18 @@ document.addEventListener('DOMContentLoaded', () => {
           if (req.status === 'accepted') statusClass = 'status-approved';
           if (req.status === 'rejected') statusClass = 'status-rejected';
           
-          item.innerHTML = `
+          item.innerHTML = DOMPurify.sanitize(`
             <div class="collab-req-header">
               <span class="collab-proposal-title">Proposal: "${escapeHTML(req.proposal_title)}"</span>
               <span class="proposal-status-badge ${statusClass}" style="font-size: 0.7rem; padding: 2px 8px;">${req.status}</span>
             </div>
             <p class="collab-req-msg" style="margin-bottom: 4px;">Owner: @${req.proposal_owner}</p>
             <p class="collab-req-msg" style="font-size: 0.8rem; color: var(--text-muted); font-style: normal; margin-top: 6px;">Message: "${escapeHTML(req.message)}"</p>
-          `;
+          `);
           incomingCollabList.appendChild(item);
         });
       } catch (err) {
-        incomingCollabList.innerHTML = '<p class="empty-msg">Error loading sent collaboration requests.</p>';
+        incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading sent collaboration requests.</p>');
       }
       return;
     }
@@ -749,19 +749,19 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('/api/collaboration/incoming');
       if (!res.ok) {
-        incomingCollabList.innerHTML = '<p class="empty-msg">Only researchers and admins can manage incoming requests.</p>';
+        incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Only researchers and admins can manage incoming requests.</p>');
       } else {
         const data = await res.json();
-        incomingCollabList.innerHTML = '';
+        incomingCollabList.innerHTML = DOMPurify.sanitize('');
 
         const requests = data.requests || [];
         if (requests.length === 0) {
-          incomingCollabList.innerHTML = '<p class="empty-msg">No pending partnership requests.</p>';
+          incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">No pending partnership requests.</p>');
         } else {
           requests.forEach(req => {
             const item = document.createElement('div');
             item.className = 'collab-req-item';
-            item.innerHTML = `
+            item.innerHTML = DOMPurify.sanitize(`
               <div class="collab-req-header">
                 <span class="collab-proposal-title">Proposal: "${escapeHTML(req.proposal_title)}"</span>
                 <span class="collab-sender">From: @${escapeHTML(req.sender)}</span>
@@ -771,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn btn-sm btn-primary btn-accept-collab" data-id="${req.id}">Accept</button>
                 <button class="btn btn-sm btn-danger btn-reject-collab" data-id="${req.id}">Decline</button>
               </div>
-            `;
+            `);
             incomingCollabList.appendChild(item);
           });
 
@@ -785,7 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
-      incomingCollabList.innerHTML = '<p class="empty-msg">Error loading collaboration requests.</p>';
+      incomingCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading collaboration requests.</p>');
     }
 
     // Load Accepted Collaborations
@@ -800,25 +800,25 @@ document.addEventListener('DOMContentLoaded', () => {
           const dataAccepted = await resAccepted.json();
           const acceptedReqs = dataAccepted.requests || [];
           
-          acceptedCollabList.innerHTML = '';
+          acceptedCollabList.innerHTML = DOMPurify.sanitize('');
           if (acceptedReqs.length === 0) {
-            acceptedCollabList.innerHTML = '<p class="empty-msg">No accepted collaborations yet.</p>';
+            acceptedCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">No accepted collaborations yet.</p>');
           } else {
             acceptedReqs.forEach(req => {
               const item = document.createElement('div');
               item.className = 'collab-req-item';
-              item.innerHTML = `
+              item.innerHTML = DOMPurify.sanitize(`
                 <div class="collab-req-header">
                   <span class="collab-proposal-title">Proposal: "${escapeHTML(req.proposal_title)}"</span>
                   <span class="collab-sender" style="color: var(--success-color);">Partner: @${escapeHTML(req.collaborator)}</span>
                 </div>
-              `;
+              `);
               acceptedCollabList.appendChild(item);
             });
           }
         }
       } catch (err) {
-        acceptedCollabList.innerHTML = '<p class="empty-msg">Error loading accepted collaborations.</p>';
+        acceptedCollabList.innerHTML = DOMPurify.sanitize('<p class="empty-msg">Error loading accepted collaborations.</p>');
       }
     }
   }
@@ -901,26 +901,26 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('/api/admin/audit-logs');
       const data = await res.json();
-      auditLogsRows.innerHTML = '';
+      auditLogsRows.innerHTML = DOMPurify.sanitize('');
 
       if (data.logs.length === 0) {
-        auditLogsRows.innerHTML = '<tr><td colspan="5" style="text-align:center">No audit logs recorded.</td></tr>';
+        auditLogsRows.innerHTML = DOMPurify.sanitize('<tr><td colspan="5" style="text-align:center">No audit logs recorded.</td></tr>');
         return;
       }
 
       data.logs.forEach(log => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
+        tr.innerHTML = DOMPurify.sanitize(`
           <td>${new Date(log.timestamp).toLocaleString()}</td>
           <td><strong>${log.username || 'guest'}</strong></td>
           <td><span class="proposal-status-badge" style="background:rgba(210,210,210,0.1); color:var(--text-primary); border:1px solid var(--border-glass)">${log.action}</span></td>
           <td>${escapeHTML(log.details)}</td>
           <td><code>${log.ip_address}</code></td>
-        `;
+        `);
         auditLogsRows.appendChild(tr);
       });
     } catch (err) {
-      auditLogsRows.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--danger)">Error loading audit logs.</td></tr>';
+      auditLogsRows.innerHTML = DOMPurify.sanitize('<tr><td colspan="5" style="text-align:center; color:var(--danger)">Error loading audit logs.</td></tr>');
     }
   }
 
