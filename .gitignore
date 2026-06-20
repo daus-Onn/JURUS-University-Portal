@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.db
+uploads/
+*.zip
+.system_generated/
+app_temp/

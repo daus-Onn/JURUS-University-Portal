@@ -1,0 +1,113 @@
+=== Page 1 ===
+* JURUS *
+* JURUS  *
+JURUS
+Memperkasa  Kesiapsiagaan  Akar Umbi  untuk Ketahanan Siber Negara melalui 
+Kompetensi Praktikal Berdasarkan  Situasi  Sebenar dalam Industri
+Jurutera Siber RAWSEC (JURUS)
+CRASH COURSE
+
+=== Page 2 ===
+SI LI BUS JURUS
+SILIBUS  JURUS
+“Framework” Kompetensi & Standard Penilaian
+ANALYST
+Foundational  Operator
+PENILAIAN  MODUL KAEDAH  PENILAIAN HASIL  AKHIRFOKUS UTAMA
+ Kejuruteraan Sistem
+ Rangkaian dan Keselamatan
+ Keselamatan Pangkalan Data
+ Keselamatan Aplikasi
+ Pemantauan Keselamatan
+ Kesinambungan Perniagaan / Kelangsungan 
+Operasi Perniagaan
+ “LIVE-DEMO” dengan sesi walkthrough
+ Senarai  semak  berasaskan  bukti 
+(Screenshot/Log)
+ Audit hardening
+ BenchmarkPembentangan  lisan  langkah 
+penyelesaian masalah
+ Pengukuran MTD/MTO dalam 
+kesinambungan perniagaan
+Pembinaan kerangka asas, 
+konfigurasi yang selamat 
+dan kesiap-sediaan 
+membaik pulih system 
+dalam satu hos
+Integrasi sistem selamat, 
+segmentasi rangkaian 
+dan keupayaan 
+pemulihan merentas 
+persekitaran multi-tier.
+Reka bentuk 
+ketersediaan tinggi, 
+automasi lanjutan 
+berskala besar, seni bina 
+secure-by-default dan 
+pembinaan semula 
+berasaskan insiden.
+PROFESSIONAL
+Integration Engineer
+SPECIALIST
+Resilience  Architect
+ Deployment Seni Bina Multi-Tier
+ Segmentasi Rangkaian & Kawalan Akses
+ Seni Bina VPC Cloud
+ Integrasi Aplikasi-Pangkalan Data
+ Skrip Automasi Asas
+ Pembinaan senario + change ticket
+ Pemulihan daripada dapatan audit 
+simulasi
+ Simulasi pemulihan Blue Team
+ Bukti prinsip Least Privilege & Logging
+ Corak HA/DR
+ Seni Bina Awan Lanjutan (Multi-Region)
+ Automasi Hardening (Ansible/Terraform)
+ DevSecOps & Security Gate CI/CD
+ Pembinaan Semula Infrastruktur Pasca 
+Pencerobohan
+ Penyelesaian Masalah Insiden Kompleks
+ Simulasi Red-Blue Team (Live Fire)
+ Pengukuran Service Level 
+Indicator(SLI)/Service Level 
+Objective(SLO) seperti dalam Site 
+Reliability Engineering (SRE) Google
+ Architecture Review Board Defence
+ Analisis Trade-off Kos-Risiko
+Mampu untuk membina 
+satu platform yang “SAFE 
+& SECURE” secara 
+individu
+Keupayaan mengintegrasikan 
+sistem secara selamat dan 
+memulihkan isu.
+Keupayaan mereka bentuk 
+dan mempertahankan 
+seni bina yang tahan 
+lasak.
+
+=== Page 3 ===
+
+
+=== Page 4 ===
+
+
+=== Page 5 ===
+
+
+=== Page 6 ===
+
+
+=== Page 7 ===
+
+
+=== Page 8 ===
+
+
+=== Page 9 ===
+
+
+=== Page 10 ===
+Terima Kasih
+Terima Kasih
+

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JURUS - University Research Collaboration Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Global Background Elements -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <header id="main-header">
+    <div class="header-logo">
+      <span class="logo-shield"></span>
+      <span class="logo-text">JURUS Portal</span>
+    </div>
+    <nav id="header-nav">
+      <a href="#" id="nav-dashboard" class="nav-link active">Dashboard</a>
+      <a href="#" id="nav-proposals" class="nav-link">Proposals</a>
+      <a href="#" id="nav-announcements" class="nav-link">Announcements</a>
+      <a href="#" id="nav-admin" class="nav-link hide">Admin Logs</a>
+    </nav>
+    <div class="header-actions">
+      <span id="nav-user-info" class="user-badge hide" style="margin-right: 10px;"></span>
+      <button id="btn-login-modal" class="btn btn-primary">Login</button>
+      <button id="btn-logout" class="btn btn-danger hide">Logout</button>
+    </div>
+  </header>
+
+  <div id="security-announcement-bar" class="security-banner">
+    <span>🔒 Security Status: Enforced TLS 1.3 protocol fully operational. <a href="#" id="banner-logs-link">View System Audit Logs</a></span>
+  </div>
+
+  <main id="app-container" class="main-content">
+    
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ================= DASHBOARD PAGE ================= -->
+    <section id="page-dashboard" class="page-view active-view">
+      <div class="hero-section">
+        <div class="hero-badge-logo" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span style="font-size: 1.8rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));">🛡️</span>
+          <span style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px;">JURUS Portal</span>
+        </div>
+        <h1>National Research Collaboration Initiative</h1>
+        <p>A secure, unified platform for academic research proposals, project documentation, and secure cross-institutional collaborations.</p>
+        <div class="hero-actions" style="display: flex; gap: 15px; justify-content: center; margin-bottom: 20px;">
+          <button id="btn-hero-explore" class="btn btn-primary">Explore Proposals</button>
+          <button id="btn-hero-notices" class="btn btn-secondary">Read Announcements</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-proposals-count">0</span>
+            <span class="stat-lbl">Active Proposals</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-collab-count">0</span>
+            <span class="stat-lbl">Collaborations</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-security-status">SECURE</span>
+            <span class="stat-lbl">TLS 1.3 Certified</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dashboard-card glass-container">
+          <div class="card-header">
+            <h2>Latest Announcements</h2>
+            <button id="btn-new-announcement" class="btn btn-sm btn-secondary hide">Publish</button>
+          </div>
+          <div id="announcements-list" class="announcements-list">
+            <p class="loading-msg">Loading announcements...</p>
+          </div>
+        </div>
+
+        <div class="dashboard-card glass-container">
+          <div class="card-header">
+            <h2 id="collab-inbox-title">Collaboration Request Inbox</h2>
+          </div>
+          <div id="incoming-collab-list" class="incoming-collabs">
+            <p class="empty-msg">Please log in to view collaboration requests.</p>
+          </div>
+        </div>
+
+        <div class="dashboard-card glass-container hide" id="card-accepted-collab">
+          <div class="card-header">
+            <h2>Accepted Collaborators</h2>
+          </div>
+          <div id="accepted-collab-list" class="incoming-collabs">
+            <p class="empty-msg">No accepted collaborations yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROPOSALS PAGE ================= -->
+    <section id="page-proposals" class="page-view hide">
+      <div class="page-header-row">
+        <div>
+          <h1>Research Proposals</h1>
+          <p>Explore submitted research projects and upload your own proposal documents.</p>
+        </div>
+        <button id="btn-new-proposal" class="btn btn-primary hide">New Proposal</button>
+      </div>
+
+      <div id="proposals-grid" class="proposals-grid">
+        <p class="loading-msg">Loading proposals...</p>
+      </div>
+    </section>
+
+    <!-- ================= ANNOUNCEMENTS PAGE ================= -->
+    <section id="page-announcements" class="page-view hide">
+      <div class="page-header-row">
+        <div>
+          <h1>Announcements Bulletin</h1>
+          <p>Important JURUS updates, research guidelines, and system notices.</p>
+        </div>
+        <button id="btn-announcement-page-create" class="btn btn-primary hide">New Notice</button>
+      </div>
+      <div id="announcements-full-list" class="announcements-full-list">
+        <p class="loading-msg">Loading notices...</p>
+      </div>
+    </section>
+
+    <!-- ================= ADMIN LOGS PAGE ================= -->
+    <section id="page-admin" class="page-view hide">
+      <div class="page-header-row">
+        <div>
+          <h1>System Security Audit Log</h1>
+          <p>Operational visibility, access events, failed log ins, and system configurations.</p>
+        </div>
+        <button id="btn-refresh-logs" class="btn btn-secondary">Refresh Logs</button>
+      </div>
+      <div class="glass-container logs-table-container">
+        <table id="tbl-audit-logs">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Username</th>
+              <th>Action</th>
+              <th>Details</th>
+              <th>IP Address</th>
+            </tr>
+          </thead>
+          <tbody id="audit-logs-rows">
+            <!-- Populated via API -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= AUTH MODAL ================= -->
+  <div id="modal-auth" class="modal hide">
+    <div class="modal-content glass-container">
+      <span id="btn-close-auth-modal" class="modal-close">&times;</span>
+      <div class="modal-tabs">
+        <button id="tab-login" class="tab-btn active">Sign In</button>
+        <button id="tab-register" class="tab-btn">Register</button>
+      </div>
+      
+      <!-- Login Form -->
+      <form id="form-login" class="auth-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" id="btn-submit-login" class="btn btn-primary btn-block">Sign In</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" class="auth-form hide">
+        <div class="form-group">
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" placeholder="Create username" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" placeholder="Minimum 8 characters" required>
+        </div>
+        <div class="form-group">
+          <label for="register-role">Consortium Role</label>
+          <select id="register-role" required>
+            <option value="researcher">Researcher (Can upload proposals)</option>
+            <option value="collaborator">Collaborator (Can request partnerships)</option>
+          </select>
+        </div>
+        <button type="submit" id="btn-submit-register" class="btn btn-primary btn-block">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= NEW PROPOSAL MODAL ================= -->
+  <div id="modal-proposal" class="modal hide">
+    <div class="modal-content glass-container">
+      <span id="btn-close-proposal-modal" class="modal-close">&times;</span>
+      <h2>Submit Research Proposal</h2>
+      <p class="modal-subtitle">Upload your document (.pdf, .doc, .docx, .zip - Max 10MB)</p>
+      
+      <form id="form-proposal" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="proposal-title">Proposal Title</label>
+          <input type="text" id="proposal-title" placeholder="Enter proposal title" required>
+        </div>
+        <div class="form-group">
+          <label for="proposal-desc">Proposal Summary / Description</label>
+          <textarea id="proposal-desc" rows="4" placeholder="Brief outline of goals, methods, and collaborators..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="proposal-file">Select Proposal File</label>
+          <div class="file-drop-area">
+            <span class="file-icon">📄</span>
+            <span class="file-text">Click to browse or drag file here</span>
+            <input type="file" id="proposal-file" accept=".pdf,.doc,.docx,.zip" required>
+          </div>
+          <span id="selected-file-name" class="selected-file-name"></span>
+        </div>
+        <button type="submit" id="btn-submit-proposal" class="btn btn-primary btn-block">Upload & Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= NEW ANNOUNCEMENT MODAL ================= -->
+  <div id="modal-announcement" class="modal hide">
+    <div class="modal-content glass-container">
+      <span id="btn-close-ann-modal" class="modal-close">&times;</span>
+      <h2>Publish Security or Notice bulletin</h2>
+      
+      <form id="form-announcement">
+        <div class="form-group">
+          <label for="ann-title">Notice Title</label>
+          <input type="text" id="ann-title" placeholder="Enter bulletin title" required>
+        </div>
+        <div class="form-group">
+          <label for="ann-content">Notice Content</label>
+          <textarea id="ann-content" rows="5" placeholder="Write bulletin message here..." required></textarea>
+        </div>
+        <button type="submit" id="btn-submit-ann" class="btn btn-primary btn-block">Publish Notice</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= COLLABORATION REQUEST MODAL ================= -->
+  <div id="modal-collab-request" class="modal hide">
+    <div class="modal-content glass-container">
+      <span id="btn-close-collab-modal" class="modal-close">&times;</span>
+      <h2>Request Research Collaboration</h2>
+      <p id="collab-modal-title" class="modal-subtitle">Proposal: [Title]</p>
+      
+      <form id="form-collab-request">
+        <input type="hidden" id="collab-proposal-id">
+        <div class="form-group">
+          <label for="collab-message">Collaboration Message</label>
+          <textarea id="collab-message" rows="4" placeholder="Detail your background, credentials, and how you want to contribute to this research..." required></textarea>
+        </div>
+        <button type="submit" id="btn-submit-collab" class="btn btn-primary btn-block">Submit Collaboration Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ATTACH DOCUMENT MODAL ================= -->
+  <div id="modal-attach-doc" class="modal hide">
+    <div class="modal-content glass-container">
+      <span id="btn-close-attach-modal" class="modal-close">&times;</span>
+      <h2>Attach Project Documentation</h2>
+      <p id="attach-modal-title" class="modal-subtitle">Proposal: [Title]</p>
+      
+      <form id="form-attach-doc" enctype="multipart/form-data">
+        <input type="hidden" id="attach-proposal-id">
+        <div class="form-group">
+          <label for="attach-file">Select Documentation File (.pdf, .doc, .docx, .zip)</label>
+          <div class="file-drop-area">
+            <span class="file-icon">📁</span>
+            <span class="file-text">Click to choose attachment</span>
+            <input type="file" id="attach-file" accept=".pdf,.doc,.docx,.zip" required>
+          </div>
+          <span id="selected-attach-name" class="selected-file-name"></span>
+        </div>
+        <button type="submit" id="btn-submit-attach" class="btn btn-primary btn-block">Upload Attachment</button>
+      </form>
+    </div>
+  </div>
+
+  <footer id="main-footer" class="glass-container">
+    <p>&copy; 2026 Jurutera Siber rawSEC (JURUS) Program. All rights reserved.</p>
+    <p class="footer-note">National Competency Path (Level 1 Analyst) - Project Environment Mockup</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

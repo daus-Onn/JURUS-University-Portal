@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JURUS Portal - Ralat 400</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --apple-blue: #0071e3;
+      --text-primary: #1d1d1f;
+      --text-secondary: #515154;
+      --border-light: #d2d2d7;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-secondary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: -1;
+    }
+    .error-container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+      max-width: 480px;
+      width: 90%;
+    }
+    .error-code {
+      font-size: 5rem;
+      font-weight: 800;
+      color: #ff9500;
+      margin: 0;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .error-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 15px 0 10px;
+    }
+    .error-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--apple-blue);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: #0077ed;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <h1 class="error-code">400</h1>
+    <h2 class="error-title">Permintaan Tidak Sah</h2>
+    <p class="error-desc">Permintaan yang dihantar tidak dapat difahami oleh pelayan kerana sintaks yang tidak betul.</p>
+    <a href="/" class="btn">Kembali ke Laman Utama</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+=== Page 1 ===
+JURUTERA SIBER RAWSEC
+Logistics Warehouse Operations Management
+System
+JURUS Level 1 (Analyst) Cyber Engineering Challenge
+Role: Lead Cyber Engineering AnalystDuration: Three (3) Weeks
+Focus: Cyber Engineering InfrastructureLevel: Level 1 Competency
+BACKGROUND
+A  regional  logistics  and  supply  chain  provider  has  recently  expanded  its  operations  to  support  multiple
+warehouse  facilities  across  the  country.  As  part  of  this  expansion,  the  organisation  plans  to  deploy  a
+centralised  Warehouse  Operations  Management  System  that  enables  warehouse  personnel  to  manage
+shipment tracking, inventory updates, delivery scheduling, operational reporting, and supplier coordination
+through a web-based platform.
+During an internal operational assessment, the organisation identified that its existing IT environment is
+heavily  decentralised,  inconsistently  configured,  and  lacks  adequate  security  visibility  and  operational
+resilience required to support business-critical logistics services.
+The organisation therefore requires a secure and operational infrastructure capable of supporting the new
+platform while ensuring availability, integrity of operational data, accountability of administrative actions, and
+recoverability during service disruptions.
+Your organisation has been engaged as a cyber engineering consultancy to design and implement the
+required  environment.  You  have  been  assigned  as  the  lead  Cyber  Engineering  Analyst  responsible  for
+delivering a production-ready solution.
+JURUS Level 1 Analyst • Cyber Engineering Challenge 1
+
+=== Page 2 ===
+Engineering-First Philosophy
+Unlike traditional cybersecurity competitions, no infrastructure, software products, deployment guides,
+templates,  or  predefined  architectures  will  be  provided.  Participants  are  expected  to  independently
+determine  the  most  appropriate  technologies,  deployment  methods,  operational  controls,  security
+mechanisms, monitoring solutions, and recovery strategies based on practical engineering judgement
+and industry-relevant practices.
+The objective of this challenge is not to evaluate familiarity with any specific technology vendor or
+platform, but rather to assess the participant's ability to independently design, deploy, secure, monitor,
+troubleshoot,  document,  and  recover  a  functional  operational  environment  using  sound  cyber
+engineering principles.
+COMPETITION DURATION
+Participants will be given three (3) weeks to complete the challenge.
+During this period, participants may build and deploy their solution using any environment of their choosing.
+This  may  include  cloud  infrastructure,  local  virtualisation  environments,  physical  hardware,  containerised
+deployments, or hybrid approaches.
+All  provisioning,  software  installation,  system  configuration,  operational  testing,  troubleshooting,  security
+implementation,  documentation,  and  demonstration  preparation  activities  are  the  responsibility  of  the
+participant.
+PROJECT REQUIREMENTS
+The logistics provider requires a publicly accessible web-based platform capable of supporting warehouse
+and shipment management operations.
+The  chosen  solution  must  be  deployed  on  an  operating  system  selected  by  the  participant  and  must
+incorporate appropriate security controls to protect both operational services and stored business data.
+The deployed environment must demonstrate secure administrative access controls and appropriate user
+management practices.
+Participants are expected to implement measures that reduce the likelihood of unauthorised access while
+maintaining operational usability for warehouse administrators and authorised personnel.
+The solution should demonstrate evidence of secure baseline configuration practices and appropriate system
+hardening measures for production-facing infrastructure.
+The  application  environment  must  include  a  database  component  capable  of  storing  inventory  records,
+shipment details, operational logs, and user account information.
+JURUS Level 1 Analyst • Cyber Engineering Challenge 2
+
+=== Page 3 ===
+Participants  are  expected  to  implement  suitable  database  protection  mechanisms  and  demonstrate  an
+understanding  of  least-privilege  access  principles,  secure  credential  management,  service  isolation,  and
+secure configuration practices.
+The organisation has also identified a requirement for operational visibility into system and security events.
+Participants are therefore required to implement monitoring, logging, or observability capabilities that allow
+administrators to identify system activity, user actions, operational issues, and potentially security-relevant
+events.
+The technologies selected to fulfil these requirements are entirely at the discretion of the participant.
+In addition, the organisation requires assurance that critical services and operational data can be restored
+following  accidental  deletion,  hardware  failure,  service  interruption,  ransomware  simulation,  or  other
+operational incidents.
+Participants must therefore design and implement an appropriate backup and recovery approach capable of
+restoring business-critical functionality and data integrity.
+Participants are encouraged to prioritise maintainability, operational simplicity, service reliability, and practical
+recovery procedures throughout their implementation.
+DELIVERABLES
+At the conclusion of the challenge, participants shall submit a technical package containing sufficient evidence
+to demonstrate the design, implementation, security, operation, monitoring, and recoverability of their solution.
+The submission should include:
+Solution architecture diagram
+Technical implementation documentation
+Security configuration evidence
+Administrative access control documentation
+Monitoring and logging evidence
+Backup and recovery procedures
+Operational validation or testing evidence
+Supporting artefacts relevant to the solution
+Evidence may include screenshots, configuration files, logs, command outputs, deployment notes, validation
+results, scripts, diagrams, or any additional material considered relevant by the participant.
+Participants should assume that assessors have not previously seen their environment.
+Documentation should therefore be sufficiently detailed to allow assessors to understand the participant's
+design decisions, implementation approach, operational considerations, and applied security controls.
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+JURUS Level 1 Analyst • Cyber Engineering Challenge 3
+
+=== Page 4 ===
+LIVE DEMONSTRATION
+Each participant or team will be allocated thirty (30) minutes for a live demonstration and technical defence
+session.
+During this session, participants will be expected to present their architecture and explain the rationale behind
+their technology selections, deployment decisions, security controls, monitoring implementation, and recovery
+strategy.
+Participants must demonstrate that their solution is operational and capable of supporting the stated business
+requirements.
+Assessors may request demonstrations involving:
+Administrative access management
+Security control implementation
+Database protection mechanisms
+Monitoring and alerting capabilities
+Logging visibility
+Backup validation
+Recovery procedures
+Operational troubleshooting
+The demonstration should also provide evidence that participants understand the engineering decisions they
+have made.
+Assessors  may  ask  participants  to  discuss  alternative  approaches,  explain  trade-offs,  justify  technology
+selections, and describe how operational and security risks were mitigated.
+Participants should be prepared to defend both their technical implementation and the reasoning behind their
+engineering decisions.
+ASSESSMENT PHILOSOPHY
+The JURUS programme adopts an engineering-first assessment philosophy.
+Assessment will focus on demonstrated practical capability rather than theoretical knowledge alone.
+Participants will be evaluated based on:
+Quality and completeness of implementation
+Effectiveness of security controls
+Operational maintainability and usability
+Clarity and completeness of documentation
+Visibility provided through monitoring and logging
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+JURUS Level 1 Analyst • Cyber Engineering Challenge 4
+
+=== Page 5 ===
+Practicality of backup and recovery procedures
+Ability to explain and justify engineering decisions
+A more complex solution will not necessarily receive a higher score. Greater emphasis will be placed on
+solutions that are appropriate, secure, maintainable, operationally practical, well-documented, and clearly
+understood by the participant.
+The highest-scoring submissions will demonstrate not only technical competence, but also strong engineering
+judgement, structured operational thinking, and professional communication skills.
+EXPECTED OUTCOME
+Upon completion of the challenge, successful participants should demonstrate the capability to independently
+design, build, secure, monitor, troubleshoot, document, and recover a production-ready operational system
+using industry-relevant cyber engineering practices.
+This outcome aligns directly with the JURUS Level 1 Analyst competency objective of developing practitioners
+capable  of  independently  building  and  securing  systems  while  applying  structured  troubleshooting
+methodologies, operational discipline, and sound engineering judgement.
+• 
+• 
+JURUS Level 1 Analyst • Cyber Engineering Challenge 5
+
