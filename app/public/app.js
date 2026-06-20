@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Global fetch wrapper to automatically attach CSRF Token
   const originalFetch = window.fetch;
   window.fetch = async function (url, options = {}) {
+    options.credentials = options.credentials || 'same-origin';
+    options.cache = options.cache || 'no-store';
+    
     if (options.method && ['POST', 'PUT', 'DELETE'].includes(options.method.toUpperCase())) {
       options.headers = options.headers || {};
       if (csrfToken) {
@@ -99,7 +102,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'error') icon = '❌';
     if (type === 'warning') icon = '⚠️';
     
-    toast.innerHTML = `<span>${icon}</span> <div>${message}</div>`;
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = icon;
+    
+    const msgDiv = document.createElement('div');
+    msgDiv.textContent = message; // Safe from XSS
+    
+    toast.appendChild(iconSpan);
+    toast.appendChild(document.createTextNode(' '));
+    toast.appendChild(msgDiv);
     container.appendChild(toast);
     
     setTimeout(() => {
