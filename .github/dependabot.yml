@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # Enable Dependabot for npm/Node.js dependencies
+  - package-ecosystem: "npm"
+    directory: "/app"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
