@@ -89,11 +89,12 @@ The actors interacting with the environment are:
 - **UFW Host Firewall Configuration:** The host runs the Uncomplicated Firewall (UFW) with a Default-Deny policy for incoming traffic. Only target services (HTTP, HTTPS, and Custom SSH on 2222) are exposed.
 
 ### 4.3 Initiative 3 - Database & Data Security
-- **Database Selection:** SQLite embedded database with strict file permissions, configured to mimic enterprise database least-privilege principles.
+- **Database Selection & Port Access Restriction:** SQLite embedded database with strict file permissions is utilized. Unlike traditional DB engines, SQLite does not listen on any network ports (`0.0.0.0`), inherently guaranteeing zero external port exposure and perfectly fulfilling the Host Access Management requirement.
 - **Secret Management & Obfuscation:** To protect database initialization credentials against Static Application Security Testing (SAST) tools, hardcoded secrets in `db.js` have been completely removed. Instead, the application utilizes `process.env` environment variables. As a fallback mechanism, credentials are obfuscated using Base64 encoding to prevent plaintext exposure in source code.
 - **Data Encryption at Rest:** The VM utilizes Linux Unified Key Setup (LUKS) on the database partition to encrypt data-at-rest with AES-XTS-Plain64.
 
 ### 4.4 Initiative 4 - Application Security & DevSecOps
+- **Reverse Proxy and SSL/TLS Hardening (Nginx & Cloudflare):** Nginx and Cloudflare act as the secure TLS termination proxies forwarding client traffic. To comply with web server hardening standards, server version banners are disabled (`server_tokens off;`). The TLS protocol is locked down to TLSv1.3 only. Critical security headers are enforced globally, including `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, and `Content-Security-Policy` to mitigate MIME-sniffing and Clickjacking.
 - **Role-Based Access Control (RBAC):** The application enforces strict RBAC middleware. A critical vulnerability where administrators could improperly submit proposals was fixed by explicitly restricting the `/api/proposals` POST endpoint to the `researcher` role only. The UI was also updated to hide the "Submit Proposal" button for admin accounts.
 - **Cross-Site Scripting (XSS) Mitigation:** A major DOM XSS vulnerability was identified in the frontend notification system. This was remediated by implementing **DOMPurify**. Over 34 instances of vulnerable `innerHTML` assignments in `app.js` are now wrapped in `DOMPurify.sanitize()`. To prevent supply chain attacks, the DOMPurify library is loaded via CDN with a strict Subresource Integrity (SRI) hash in `index.html`.
 - **Session & Cookie Security (Cloudflare Tunnel Compatibility):** To resolve session-dropping issues caused by Cloudflare Tunnels, Express session cookies are explicitly configured with `sameSite: 'none'` and `secure: true`. Furthermore, all frontend `fetch()` calls are configured with `credentials: 'same-origin'` to ensure authentication state is maintained across proxied connections.
@@ -121,7 +122,7 @@ The environment complies with ISO/IEC 27001 (access logging, least-privilege), P
 ---
 
 ## 6. SUMMARY
-The University Research Collaboration Portal has been successfully built, secured, and validated. By combining automated shell scripts for operating system and network hardening with strict RBAC policies, DOMPurify XSS mitigation, secure cookie configurations for Cloudflare Tunnels, and a comprehensive DevSecOps pipeline (CodeQL, Snyk, Dependabot), we have established a highly resilient, production-ready environment that fulfills the JURUS Analyst competency standard.
+The University Research Collaboration Portal has been successfully built, secured, and validated. By combining automated shell scripts for operating system and network hardening with strict RBAC policies, DOMPurify XSS mitigation, secure cookie configurations for Cloudflare Tunnels, Nginx SSL/TLS hardening, and a comprehensive DevSecOps pipeline (CodeQL, Snyk, Dependabot), we have established a highly resilient, production-ready environment that fulfills the JURUS Analyst competency standard.
 
 ---
 
@@ -157,4 +158,5 @@ The web application’s security assessment was conducted using a combination of
 | **File Upload** | Remote Code Execution & DoS | Multer upgraded to v2.2.0 (DoS patch). Limits size, sanitizes names, restricts extensions. | **PASS** |
 | **CSRF Protection** | Request Forging | A secret `X-CSRF-Token` header is cryptographically validated. `sameSite: 'none'` enforced for Tunnels. | **PASS** |
 | **Output Encoding** | Cross-Site Scripting (XSS) | DOMPurify sanitizes all dynamic DOM updates. SRI hash ensures CDN integrity. | **PASS** |
+| **Web Server Hardening** | Information Leakage & MITM | Nginx `server_tokens` disabled. TLS 1.3 enforced. HSTS, X-Frame-Options, CSP headers active. | **PASS** |
 | **CI/CD Security** | Vulnerable Dependencies | Dependabot, Snyk SAST, and CodeQL workflows enforce continuous security scanning. | **PASS** |
