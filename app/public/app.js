@@ -396,14 +396,32 @@ document.addEventListener('DOMContentLoaded', () => {
       data.announcements.slice(0, 3).forEach(ann => {
         const item = document.createElement('div');
         item.className = 'announcement-item';
-        item.innerHTML = `
-          <div class="ann-item-header">
-            <span>👤 ${escapeHTML(ann.creator)}</span>
-            <span>📅 ${new Date(ann.created_at).toLocaleDateString()}</span>
-          </div>
-          <h3 style="font-size: 1.05rem; margin-bottom: 4px; color: var(--text-primary);">${escapeHTML(ann.title)}</h3>
-          <p class="ann-item-content">${escapeHTML(ann.content)}</p>
-        `;
+        const header = document.createElement('div');
+        header.className = 'ann-item-header';
+        
+        const creatorSpan = document.createElement('span');
+        creatorSpan.textContent = `👤 ${ann.creator}`;
+        
+        const dateSpan = document.createElement('span');
+        dateSpan.textContent = `📅 ${new Date(ann.created_at).toLocaleDateString()}`;
+        
+        header.appendChild(creatorSpan);
+        header.appendChild(dateSpan);
+        
+        const title = document.createElement('h3');
+        title.style.fontSize = '1.05rem';
+        title.style.marginBottom = '4px';
+        title.style.color = 'var(--text-primary)';
+        title.textContent = ann.title;
+        
+        const content = document.createElement('p');
+        content.className = 'ann-item-content';
+        content.textContent = ann.content;
+        
+        item.appendChild(header);
+        item.appendChild(title);
+        item.appendChild(content);
+        
         announcementsList.appendChild(item);
       });
     } catch (err) {
@@ -426,14 +444,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = document.createElement('div');
         item.className = 'announcement-item';
         item.style.padding = '20px';
-        item.innerHTML = `
-          <div class="ann-item-header" style="font-size: 0.9rem; margin-bottom: 8px;">
-            <span>👤 Published by: <strong>${escapeHTML(ann.creator)}</strong></span>
-            <span>📅 Date: ${new Date(ann.created_at).toLocaleString()}</span>
-          </div>
-          <h2 style="font-size: 1.3rem; margin-bottom: 8px; color: var(--primary);">${escapeHTML(ann.title)}</h2>
-          <p class="ann-item-content" style="font-size: 1rem; line-height: 1.7;">${escapeHTML(ann.content)}</p>
-        `;
+        const header = document.createElement('div');
+        header.className = 'ann-item-header';
+        header.style.fontSize = '0.9rem';
+        header.style.marginBottom = '8px';
+        
+        const creatorSpan = document.createElement('span');
+        creatorSpan.textContent = `👤 Published by: `;
+        const creatorStrong = document.createElement('strong');
+        creatorStrong.textContent = ann.creator;
+        creatorSpan.appendChild(creatorStrong);
+        
+        const dateSpan = document.createElement('span');
+        dateSpan.textContent = `📅 Date: ${new Date(ann.created_at).toLocaleString()}`;
+        
+        header.appendChild(creatorSpan);
+        header.appendChild(dateSpan);
+        
+        const title = document.createElement('h2');
+        title.style.fontSize = '1.3rem';
+        title.style.marginBottom = '8px';
+        title.style.color = 'var(--primary)';
+        title.textContent = ann.title;
+        
+        const content = document.createElement('p');
+        content.className = 'ann-item-content';
+        content.style.fontSize = '1rem';
+        content.style.lineHeight = '1.7';
+        content.textContent = ann.content;
+        
+        item.appendChild(header);
+        item.appendChild(title);
+        item.appendChild(content);
+
         announcementsFullList.appendChild(item);
       });
     } catch (err) {

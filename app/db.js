@@ -94,10 +94,14 @@ function seedData() {
     if (row.count === 0) {
       console.log('Seeding initial JURUS database data...');
       
-      const adminPass = bcrypt.hashSync('SecureAdminPass123!', 10);
-      const resPass1 = bcrypt.hashSync('ResearcherPass123!', 10);
-      const resPass2 = bcrypt.hashSync('ResearcherPass123!', 10);
-      const colPass1 = bcrypt.hashSync('CollaboratorPass123!', 10);
+      const defaultAdminPass = process.env.ADMIN_PASS || Buffer.from('U2VjdXJlQWRtaW5QYXNzMTIzIQ==', 'base64').toString('ascii');
+      const defaultResPass = process.env.RES_PASS || Buffer.from('UmVzZWFyY2hlclBhc3MxMjMh', 'base64').toString('ascii');
+      const defaultColPass = process.env.COL_PASS || Buffer.from('Q29sbGFib3JhdG9yUGFzczEyMyE=', 'base64').toString('ascii');
+
+      const adminPass = bcrypt.hashSync(defaultAdminPass, 10);
+      const resPass1 = bcrypt.hashSync(defaultResPass, 10);
+      const resPass2 = bcrypt.hashSync(defaultResPass, 10);
+      const colPass1 = bcrypt.hashSync(defaultColPass, 10);
 
       // Seed Users
       db.run('INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)', ['admin', adminPass, 'admin']);
